@@ -617,7 +617,7 @@ public class RptPermisos extends javax.swing.JInternalFrame {
         parametros.put("fechaFin", fechaFin);
         parametros.put("rangoTitulo", rangoTitulo);
         parametros.put("rangoValor", rangoValor);
-        parametros.put("titulo", "REPORTE DE PERMISOS");
+        parametros.put("titulo", "SANTA MARÍA REINA - REPORTE DE PERMISOS");
         parametros.put("CONEXION_EMPLEADOS", ec.getDao().getConexion());
 
         reporteador.setConn(gc.getDao().getConexion());

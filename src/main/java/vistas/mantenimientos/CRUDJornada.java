@@ -87,6 +87,8 @@ public class CRUDJornada extends javax.swing.JInternalFrame {
         cboTipo = new javax.swing.JComboBox();
         jLabel14 = new javax.swing.JLabel();
         chkSalida = new javax.swing.JCheckBox();
+        chkRefrigerio = new javax.swing.JCheckBox();
+        jLabel15 = new javax.swing.JLabel();
         jPanel2 = new javax.swing.JPanel();
         btnGuardar = new javax.swing.JButton();
         btnCancelar = new javax.swing.JButton();
@@ -132,7 +134,7 @@ public class CRUDJornada extends javax.swing.JInternalFrame {
         jLabel2.setText("Tolerancia de entrada de refrigerio (HH:mm):");
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
-        gridBagConstraints.gridy = 20;
+        gridBagConstraints.gridy = 22;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.LINE_START;
         jPanel1.add(jLabel2, gridBagConstraints);
 
@@ -144,7 +146,7 @@ public class CRUDJornada extends javax.swing.JInternalFrame {
         });
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 2;
-        gridBagConstraints.gridy = 20;
+        gridBagConstraints.gridy = 22;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.LINE_START;
         jPanel1.add(spToleranciaRefrigerioHE, gridBagConstraints);
 
@@ -208,7 +210,7 @@ public class CRUDJornada extends javax.swing.JInternalFrame {
         jLabel6.setText("Hora de salida (HH:mm):");
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
-        gridBagConstraints.gridy = 22;
+        gridBagConstraints.gridy = 24;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.LINE_START;
         jPanel1.add(jLabel6, gridBagConstraints);
 
@@ -220,14 +222,14 @@ public class CRUDJornada extends javax.swing.JInternalFrame {
         });
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 2;
-        gridBagConstraints.gridy = 22;
+        gridBagConstraints.gridy = 24;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.LINE_START;
         jPanel1.add(spTurnoHS, gridBagConstraints);
 
         jLabel7.setText("Hora de salida a refrigerio (HH:mm):");
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
-        gridBagConstraints.gridy = 16;
+        gridBagConstraints.gridy = 18;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.LINE_START;
         jPanel1.add(jLabel7, gridBagConstraints);
 
@@ -239,14 +241,14 @@ public class CRUDJornada extends javax.swing.JInternalFrame {
         });
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 2;
-        gridBagConstraints.gridy = 16;
+        gridBagConstraints.gridy = 18;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.LINE_START;
         jPanel1.add(spRefrigerioHS, gridBagConstraints);
 
         jLabel8.setText("Hora de entrada de refrigerio (HH:mm):");
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
-        gridBagConstraints.gridy = 18;
+        gridBagConstraints.gridy = 20;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.LINE_START;
         jPanel1.add(jLabel8, gridBagConstraints);
 
@@ -258,7 +260,7 @@ public class CRUDJornada extends javax.swing.JInternalFrame {
         });
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 2;
-        gridBagConstraints.gridy = 18;
+        gridBagConstraints.gridy = 20;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.LINE_START;
         jPanel1.add(spRefrigerioHE, gridBagConstraints);
 
@@ -302,14 +304,14 @@ public class CRUDJornada extends javax.swing.JInternalFrame {
         });
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 2;
-        gridBagConstraints.gridy = 24;
+        gridBagConstraints.gridy = 26;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.LINE_START;
         jPanel1.add(chkRefrigerioEspecial, gridBagConstraints);
 
         jLabel12.setText("Minutos de refrigerio:");
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
-        gridBagConstraints.gridy = 26;
+        gridBagConstraints.gridy = 28;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.LINE_START;
         jPanel1.add(jLabel12, gridBagConstraints);
 
@@ -321,7 +323,7 @@ public class CRUDJornada extends javax.swing.JInternalFrame {
         });
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 2;
-        gridBagConstraints.gridy = 26;
+        gridBagConstraints.gridy = 28;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.LINE_START;
         jPanel1.add(spMinutosRefrigerio, gridBagConstraints);
 
@@ -347,7 +349,7 @@ public class CRUDJornada extends javax.swing.JInternalFrame {
         jLabel14.setText("¿Refrigerio en intervalo?");
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
-        gridBagConstraints.gridy = 24;
+        gridBagConstraints.gridy = 26;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.LINE_START;
         jPanel1.add(jLabel14, gridBagConstraints);
 
@@ -361,6 +363,24 @@ public class CRUDJornada extends javax.swing.JInternalFrame {
         gridBagConstraints.gridy = 14;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.LINE_START;
         jPanel1.add(chkSalida, gridBagConstraints);
+
+        chkRefrigerio.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                chkRefrigerioActionPerformed(evt);
+            }
+        });
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 2;
+        gridBagConstraints.gridy = 16;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.LINE_START;
+        jPanel1.add(chkRefrigerio, gridBagConstraints);
+
+        jLabel15.setText("¿Tiene refrigerio?");
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 16;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.LINE_START;
+        jPanel1.add(jLabel15, gridBagConstraints);
 
         jPanel2.setLayout(new java.awt.GridLayout(1, 0, 10, 0));
 
@@ -395,7 +415,7 @@ public class CRUDJornada extends javax.swing.JInternalFrame {
             .addGroup(pnlDatosJornadaLayout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 168, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 169, Short.MAX_VALUE)
                 .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );
@@ -561,6 +581,7 @@ public class CRUDJornada extends javax.swing.JInternalFrame {
             seleccionada.setToleranciaHE((Date) spToleranciaHE.getValue());
             seleccionada.setTurnoHE((Date) spTurnoHE.getValue());
             seleccionada.setTurnoHS((Date) spTurnoHS.getValue());
+            seleccionada.setConRefrigerio(chkRefrigerio.isSelected());
             
             seleccionada.setTipo(tipo);
 
@@ -637,6 +658,10 @@ public class CRUDJornada extends javax.swing.JInternalFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_chkSalidaActionPerformed
 
+    private void chkRefrigerioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_chkRefrigerioActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_chkRefrigerioActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnCancelar;
@@ -645,6 +670,7 @@ public class CRUDJornada extends javax.swing.JInternalFrame {
     private javax.swing.JButton btnModificar;
     private javax.swing.JButton btnNuevo;
     private javax.swing.JComboBox cboTipo;
+    private javax.swing.JCheckBox chkRefrigerio;
     private javax.swing.JCheckBox chkRefrigerioEspecial;
     private javax.swing.JCheckBox chkSalida;
     private javax.swing.JLabel jLabel1;
@@ -653,6 +679,7 @@ public class CRUDJornada extends javax.swing.JInternalFrame {
     private javax.swing.JLabel jLabel12;
     private javax.swing.JLabel jLabel13;
     private javax.swing.JLabel jLabel14;
+    private javax.swing.JLabel jLabel15;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;

@@ -67,6 +67,19 @@ public class Jornada implements Serializable {
     //PERMITE DEFINIR SI ES UNA JORNADA ADMINISTRATIVA O TECNICA
     @Column(name = "tipo")
     private char tipo;
+    
+    @Column(name = "con_refrigerio")
+    private boolean conRefrigerio = true;
+
+    public boolean isConRefrigerio() {
+        return conRefrigerio;
+    }
+
+    public void setConRefrigerio(boolean conRefrigerio) {
+        this.conRefrigerio = conRefrigerio;
+    }
+    
+    
 
     public boolean isTerminaDiaSiguiente() {
         return terminaDiaSiguiente;

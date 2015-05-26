@@ -69,17 +69,13 @@ permiso.id = $P{permiso_id}]]>
 				</textField>
 			</frame>
 			<staticText>
-				<reportElement style="Title" x="0" y="0" width="322" height="47" forecolor="#545454" uuid="3a4666ea-ca5c-4111-91ce-59fe595a3841"/>
+				<reportElement style="Title" x="0" y="0" width="555" height="47" forecolor="#545454" uuid="3a4666ea-ca5c-4111-91ce-59fe595a3841"/>
 				<box leftPadding="5"/>
 				<textElement verticalAlignment="Middle">
 					<font fontName="SansSerif" size="16" isBold="true"/>
 				</textElement>
-				<text><![CDATA[PAPELETA DE PERMISO]]></text>
+				<text><![CDATA[SANTA MARÍA REINA - PAPELETA DE PERMISO]]></text>
 			</staticText>
-			<image>
-				<reportElement x="322" y="0" width="233" height="47" uuid="13930c06-6956-4319-98ae-275191516703"/>
-				<imageExpression><![CDATA[$P{ruta}+"/reportes/logo.png"]]></imageExpression>
-			</image>
 		</band>
 	</columnHeader>
 	<detail>
@@ -89,7 +85,7 @@ permiso.id = $P{permiso_id}]]>
 				<subreportParameter name="empleado_nro_documento">
 					<subreportParameterExpression><![CDATA[$F{empleado_nro_documento}]]></subreportParameterExpression>
 				</subreportParameter>
-				<connectionExpression><![CDATA[$P{CONEXION_EMPLEADOS}]]></connectionExpression>
+				<connectionExpression><![CDATA[$P{REPORT_CONNECTION}]]></connectionExpression>
 				<subreportExpression><![CDATA[$P{ruta} + "/reportes/subr_datos_empleado.jasper"]]></subreportExpression>
 			</subreport>
 			<staticText>

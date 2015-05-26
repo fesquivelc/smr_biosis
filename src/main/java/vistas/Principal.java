@@ -108,7 +108,7 @@ public class Principal extends javax.swing.JFrame {
         jMenuItem5 = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setTitle("SISTEMA DE CONTROL DE ASISTENCIA DE PERSONAL - BIOSIS - SAN MARCOS");
+        setTitle("SISTEMA DE CONTROL DE ASISTENCIA DE PERSONAL - BIOSIS - SMR");
         java.awt.GridBagLayout layout = new java.awt.GridBagLayout();
         layout.columnWidths = new int[] {0, 10, 0};
         layout.rowHeights = new int[] {0, 10, 0, 10, 0};

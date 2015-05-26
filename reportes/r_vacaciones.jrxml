@@ -78,7 +78,7 @@ WHERE saldo_vacacional.periodo_anio = $P{periodo_anio} AND $X{IN,empleado_nro_do
 				<textElement verticalAlignment="Middle">
 					<font fontName="SansSerif" size="16" isBold="true"/>
 				</textElement>
-				<text><![CDATA[M.P. SAN MARCOS - REPORTE DE VACACIONES]]></text>
+				<text><![CDATA[SANTA MARÍA REINA - REPORTE DE VACACIONES]]></text>
 			</staticText>
 		</band>
 	</columnHeader>
