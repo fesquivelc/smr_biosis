@@ -26,9 +26,11 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.imageio.ImageIO;
 import javax.swing.JInternalFrame;
+import javax.swing.JOptionPane;
 import javax.swing.plaf.basic.BasicInternalFrameUI;
 import utiles.UsuarioActivo;
 import vistas.dialogos.DlgCambiarPassword;
+import vistas.dialogos.DlgLogin;
 import vistas.mantenimientos.CRUDGrupoHorario;
 import vistas.mantenimientos.CRUDHorario;
 import vistas.mantenimientos.CRUDJornada;
@@ -107,6 +109,7 @@ public class Principal extends javax.swing.JFrame {
         mnuConfiguracionBD = new javax.swing.JMenuItem();
         mnuCambiarPasswd = new javax.swing.JMenuItem();
         jMenuItem5 = new javax.swing.JMenuItem();
+        itmCerrarSesion = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("SISTEMA DE CONTROL DE ASISTENCIA DE PERSONAL - BIOSIS - SMR");
@@ -384,6 +387,14 @@ public class Principal extends javax.swing.JFrame {
         });
         mnuConfiguracion.add(jMenuItem5);
 
+        itmCerrarSesion.setText("Cerrar Sesión");
+        itmCerrarSesion.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                itmCerrarSesionActionPerformed(evt);
+            }
+        });
+        mnuConfiguracion.add(itmCerrarSesion);
+
         menuBar.add(mnuConfiguracion);
 
         setJMenuBar(menuBar);
@@ -524,6 +535,17 @@ public class Principal extends javax.swing.JFrame {
         agregarAPanel(new EjecutarSQL(),true);
     }//GEN-LAST:event_jMenuItem5ActionPerformed
 
+    private void itmCerrarSesionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_itmCerrarSesionActionPerformed
+        // TODO add your handling code here:
+        if (JOptionPane.showConfirmDialog(null, "¿Desea salir del sistema?", "Mensaje del Sistema", JOptionPane.YES_NO_OPTION) == JOptionPane.YES_OPTION) {
+            this.dispose();
+            DlgLogin login = new DlgLogin(this,true);
+            login.setVisible(true);
+        } else {
+            JOptionPane.showMessageDialog(null, "okis", "Mensaje del Sistema", JOptionPane.ERROR_MESSAGE);
+        }
+    }//GEN-LAST:event_itmCerrarSesionActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnAsignarPermiso;
@@ -532,6 +554,7 @@ public class Principal extends javax.swing.JFrame {
     private javax.swing.JButton btnMarcaciones;
     private javax.swing.JButton btnRegistroAsistencia;
     private javax.swing.JDesktopPane desktopPane;
+    private javax.swing.JMenuItem itmCerrarSesion;
     private javax.swing.JMenuItem jMenuItem1;
     private javax.swing.JMenuItem jMenuItem2;
     private javax.swing.JMenuItem jMenuItem3;
@@ -704,6 +727,7 @@ public class Principal extends javax.swing.JFrame {
                     
                     asignarVacaciones = false;
                     tiposPermiso = false;
+                    botonMarcaciones = false;
                 }
             }
             else if(acceso.getAcceso().getClase().equals("VACACION")){
@@ -719,6 +743,9 @@ public class Principal extends javax.swing.JFrame {
         
         mnuHorario.setEnabled(horario);
         mnuPeriodos.setEnabled(periodo);
+        System.out.println("PERMISO: "+ permiso);
+        mnuPermiso.setEnabled(permiso);
+        mnuMarcaciones.setEnabled(botonMarcaciones);
         mnuTiposPermiso.setEnabled(tiposPermiso);
         mnuAsignarPermiso.setEnabled(permiso);
         mnuAsignarVacaciones.setEnabled(asignarVacaciones);
