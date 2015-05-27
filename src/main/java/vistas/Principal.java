@@ -113,6 +113,11 @@ public class Principal extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("SISTEMA DE CONTROL DE ASISTENCIA DE PERSONAL - BIOSIS - SMR");
+        addWindowListener(new java.awt.event.WindowAdapter() {
+            public void windowClosing(java.awt.event.WindowEvent evt) {
+                formWindowClosing(evt);
+            }
+        });
         java.awt.GridBagLayout layout = new java.awt.GridBagLayout();
         layout.columnWidths = new int[] {0, 10, 0};
         layout.rowHeights = new int[] {0, 10, 0, 10, 0};
@@ -542,9 +547,20 @@ public class Principal extends javax.swing.JFrame {
             DlgLogin login = new DlgLogin(this,true);
             login.setVisible(true);
         } else {
-            JOptionPane.showMessageDialog(null, "okis", "Mensaje del Sistema", JOptionPane.ERROR_MESSAGE);
+            JOptionPane.showMessageDialog(null, "No cerró sesión", "Mensaje del Sistema", JOptionPane.ERROR_MESSAGE);
         }
     }//GEN-LAST:event_itmCerrarSesionActionPerformed
+
+    private void formWindowClosing(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowClosing
+        // TODO add your handling code here:
+//        if (JOptionPane.showConfirmDialog(null, "¿Desea salir del sistema?", "Mensaje del Sistema", JOptionPane.YES_NO_OPTION) == JOptionPane.YES_OPTION) {
+//            this.dispose();
+//            DlgLogin login = new DlgLogin(this,true);
+//            login.setVisible(true);
+//        } else {
+//            JOptionPane.showMessageDialog(null, "No cerró sesión", "Mensaje del Sistema", JOptionPane.ERROR_MESSAGE);
+//        }
+    }//GEN-LAST:event_formWindowClosing
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -646,14 +662,14 @@ public class Principal extends javax.swing.JFrame {
     private final EmpleadoControlador ec = new EmpleadoControlador();
     private final DateFormat dfTimestamp = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss");
     private final UsuarioControlador uc = new UsuarioControlador();
-    private static Rol rol;
+//    private static Rol rol;
     
     public void setUsuario(Usuario u) {
         if (u != null) {
             UsuarioActivo.setUsuario(u);
             Empleado e = u.getEmpleado();
             //Manejo de roles GUARDIANIA.
-            rol = u.getRol();
+//            System.out.println("USUARIO: " + UsuarioActivo.getUsuario().getLogin()+" || ROL: " + UsuarioActivo.getUsuario().getRol().getNombre());
             
             lblUsuario.setText("Empleado: "+e.getPaterno()+" "+e.getMaterno()+" "+e.getNombre()+" | Usuario: " + u.getLogin() + " | Rol: " + u.getRol().getNombre()+" | Ult. inicio de sesión: "+(u.getUltimoInicio() != null ? dfTimestamp.format(u.getUltimoInicio()) : dfTimestamp.format(new Date()))+" |");
             this.habilitarMenu();
