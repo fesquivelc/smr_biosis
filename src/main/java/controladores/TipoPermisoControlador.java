@@ -22,7 +22,7 @@ public class TipoPermisoControlador extends Controlador<TipoPermiso>{
     
     public List<TipoPermiso> buscarXTipo(String tipo) {
         String jpql = "SELECT e FROM TipoPermiso e WHERE "
-                + "UPPER(nombre) LIKE CONCAT('%',UPPER(:tipo),'%')";
+                + "UPPER(nombre) = UPPER(:tipo)";
         Map<String, Object> mapa = new HashMap<>();
         mapa.put("tipo", tipo);
         return this.getDao().buscar(jpql, mapa);
