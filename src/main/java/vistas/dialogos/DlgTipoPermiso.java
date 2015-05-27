@@ -16,6 +16,7 @@ import javax.swing.JDialog;
 import javax.swing.JInternalFrame;
 import javax.swing.JOptionPane;
 import org.jdesktop.observablecollections.ObservableCollections;
+import utiles.UsuarioActivo;
 
 /**
  *
@@ -290,41 +291,41 @@ public class DlgTipoPermiso extends JDialog {
             seleccionada.setNombre(txtNombre.getText());
             seleccionada.setClase(getClase());
             seleccionada.setTipoDescuento(getDescuento());
-            
-            if(controlador.accion(accion)){
+
+            if (controlador.accion(accion)) {
                 FormularioUtil.mensajeExito(this, accion);
                 this.accion = 0;
                 this.controles(accion);
-                this.actualizarTabla();                
-            }else{
+                this.actualizarTabla();
+            } else {
                 FormularioUtil.mensajeError(this, accion);
-            }                        
-            
+            }
+
         }
     }//GEN-LAST:event_btnGuardarActionPerformed
 
     private void tblTablaMouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblTablaMouseReleased
         // TODO add your handling code here:
         int fila = tblTabla.getSelectedRow();
-        if(fila != -1){
-            tipoSeleccionado = listado.get(fila);            
-            if(evt.getClickCount() == 1){
+        if (fila != -1) {
+            tipoSeleccionado = listado.get(fila);
+            if (evt.getClickCount() == 1) {
                 mostrar(tipoSeleccionado);
-            }else if(evt.getClickCount() == 2){
-                if(tipoSeleccionado == null){
+            } else if (evt.getClickCount() == 2) {
+                if (tipoSeleccionado == null) {
                     System.out.println("ES NULL");
                 }
                 this.dispose();
             }
         }
-        
+
     }//GEN-LAST:event_tblTablaMouseReleased
 
     private void btnCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelarActionPerformed
         // TODO add your handling code here:
         this.accion = 0;
         this.controles(accion);
-        FormularioUtil.limpiarComponente(this.pnlDatos);        
+        FormularioUtil.limpiarComponente(this.pnlDatos);
     }//GEN-LAST:event_btnCancelarActionPerformed
 
 
@@ -350,7 +351,7 @@ public class DlgTipoPermiso extends JDialog {
     private javax.swing.JTextField txtNombre;
     // End of variables declaration//GEN-END:variables
 
-    public TipoPermiso getSeleccionado(){
+    public TipoPermiso getSeleccionado() {
         this.setVisible(true);
         return tipoSeleccionado;
     }
@@ -360,8 +361,8 @@ public class DlgTipoPermiso extends JDialog {
 
         FormularioUtil.activarComponente(this.pnlListado, !bandera);
         FormularioUtil.activarComponente(this.pnlDatos, bandera);
-        
-        if(accion != Controlador.MODIFICAR){
+
+        if (accion != Controlador.MODIFICAR) {
             FormularioUtil.limpiarComponente(this.pnlDatos);
         }
     }
@@ -370,7 +371,7 @@ public class DlgTipoPermiso extends JDialog {
         listado = new ArrayList<>();
         listado = ObservableCollections.observableList(listado);
 
-        String[] columnas = {"Codigo","Nombre", "Tipo", "Descuento"};
+        String[] columnas = {"Codigo", "Nombre", "Tipo", "Descuento"};
 
         MTTipoPermiso mt = new MTTipoPermiso(listado, columnas);
         tblTabla.setModel(mt);
@@ -386,21 +387,29 @@ public class DlgTipoPermiso extends JDialog {
 
     private void actualizarTabla() {
         listado.clear();
-        listado.addAll(controlador.buscarTodos());
+        if (UsuarioActivo.getUsuario().getRol().getNombre().equals("GUARDIAN")) {
+            
+            listado.addAll(controlador.buscarXTipo("PERMISO NO AUTORIZADO"));
+            
+        } else {
+            
+            listado.addAll(controlador.buscarTodos());
+            
+        }
         tblTabla.packAll();
     }
-    
-    private char getClase(){
+
+    private char getClase() {
         String valor = cboTipo.getSelectedItem().toString();
-        
+
         return valor.charAt(0);
     }
-    
-    private char getDescuento(){
+
+    private char getDescuento() {
         String valor = cboCuenta.getSelectedItem().toString();
         return valor.charAt(0);
     }
-    
+
     private String clase(char clase) {
         switch (clase) {
             case 'C':

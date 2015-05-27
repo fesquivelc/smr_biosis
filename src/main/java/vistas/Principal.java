@@ -5,21 +5,12 @@
  */
 package vistas;
 
-import entidades.RolAcceso;
-import entidades.Usuario;
-import vistas.dialogos.DlgCambiarPassword;
-import vistas.mantenimientos.CRUDGrupoHorario;
-import vistas.mantenimientos.CRUDHorario;
-import vistas.mantenimientos.CRUDJornada;
-import vistas.mantenimientos.CRUDPeriodo;
-import vistas.mantenimientos.CRUDTipoPermiso;
-import vistas.mantenimientos.CRUDUsuario;
-import vistas.reportes.RptPermisos;
-import vistas.reportes.RptRegistroAsistencia;
-import vistas.reportes.RptVacaciones;
 import com.personal.utiles.ImagenFondo;
 import controladores.EmpleadoControlador;
 import controladores.UsuarioControlador;
+import entidades.Rol;
+import entidades.RolAcceso;
+import entidades.Usuario;
 import entidades.escalafon.Empleado;
 import java.awt.Component;
 import java.awt.Dimension;
@@ -37,7 +28,17 @@ import javax.imageio.ImageIO;
 import javax.swing.JInternalFrame;
 import javax.swing.plaf.basic.BasicInternalFrameUI;
 import utiles.UsuarioActivo;
+import vistas.dialogos.DlgCambiarPassword;
+import vistas.mantenimientos.CRUDGrupoHorario;
+import vistas.mantenimientos.CRUDHorario;
+import vistas.mantenimientos.CRUDJornada;
+import vistas.mantenimientos.CRUDPeriodo;
+import vistas.mantenimientos.CRUDTipoPermiso;
+import vistas.mantenimientos.CRUDUsuario;
+import vistas.reportes.RptPermisos;
+import vistas.reportes.RptRegistroAsistencia;
 import vistas.reportes.RptTardanzasFaltas;
+import vistas.reportes.RptVacaciones;
 
 /**
  *
@@ -622,10 +623,15 @@ public class Principal extends javax.swing.JFrame {
     private final EmpleadoControlador ec = new EmpleadoControlador();
     private final DateFormat dfTimestamp = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss");
     private final UsuarioControlador uc = new UsuarioControlador();
+    private static Rol rol;
+    
     public void setUsuario(Usuario u) {
         if (u != null) {
             UsuarioActivo.setUsuario(u);
             Empleado e = u.getEmpleado();
+            //Manejo de roles GUARDIANIA.
+            rol = u.getRol();
+            
             lblUsuario.setText("Empleado: "+e.getPaterno()+" "+e.getMaterno()+" "+e.getNombre()+" | Usuario: " + u.getLogin() + " | Rol: " + u.getRol().getNombre()+" | Ult. inicio de sesión: "+(u.getUltimoInicio() != null ? dfTimestamp.format(u.getUltimoInicio()) : dfTimestamp.format(new Date()))+" |");
             this.habilitarMenu();
             if(u.getUltimoInicio() == null){
@@ -673,6 +679,10 @@ public class Principal extends javax.swing.JFrame {
         boolean botonHorarios = false;
         boolean botonRegistroAsistencia = false;
         
+        //Caso de Salidas no Autorizadas (Guardian)
+        boolean asignarVacaciones = true;
+        boolean tiposPermiso = true;
+        
         for(RolAcceso acceso : accesos){
             if(acceso.getAcceso().getClase().equals("HORARIO")){
                 horario = true;
@@ -689,6 +699,12 @@ public class Principal extends javax.swing.JFrame {
             else if(acceso.getAcceso().getClase().equals("PERMISO")){
                 permiso = true;
                 botonAsignarPermiso =true;
+                
+                if(UsuarioActivo.getUsuario().getRol().getNombre().equals("GUARDIAN")){
+                    
+                    asignarVacaciones = false;
+                    tiposPermiso = false;
+                }
             }
             else if(acceso.getAcceso().getClase().equals("VACACION")){
                 vacacion = true;
@@ -703,9 +719,9 @@ public class Principal extends javax.swing.JFrame {
         
         mnuHorario.setEnabled(horario);
         mnuPeriodos.setEnabled(periodo);
-        mnuTiposPermiso.setEnabled(permiso);
+        mnuTiposPermiso.setEnabled(tiposPermiso);
         mnuAsignarPermiso.setEnabled(permiso);
-        mnuAsignarVacaciones.setEnabled(vacacion);
+        mnuAsignarVacaciones.setEnabled(asignarVacaciones);
         mnuReportes.setEnabled(reportes);
 //        mnuUsuarios.setEnabled(configuracion);
         mnuConfiguracionBD.setEnabled(configuracion);
